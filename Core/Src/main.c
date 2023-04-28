@@ -23,6 +23,7 @@
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
+#include "usb_otg.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -60,6 +61,16 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+#if defined(USB)
+void usbClock_Config(void);
+void usbInit(void);
+
+int isrStart;
+int isrEnd;
+#endif  /* USB */
+
+void mainLoop(void);
+
 /* USER CODE END 0 */
 
 /**
@@ -91,7 +102,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+ DBGMCU->APB3FZ1 |= DBGMCU_APB3FZ1_DBG_WWDG1;
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -112,7 +123,21 @@ int main(void)
   MX_TIM17_Init();
   MX_UART5_Init();
   MX_UART7_Init();
+  MX_TIM6_Init();
+  MX_USB_OTG_HS_PCD_Init();
   /* USER CODE BEGIN 2 */
+
+ uint8_t startMsg[] = "\n\rentering mainLoop\n\r";
+ HAL_UART_Transmit(&huart3, startMsg, sizeof(startMsg), HAL_MAX_DELAY);
+
+#if defined(USB)
+
+// usbInit();
+// __HAL_RCC_USB2_OTG_FS_CLK_ENABLE();
+
+#endif  /* USB */
+
+  mainLoop();
 
   /* USER CODE END 2 */
 
@@ -187,6 +212,41 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+//#if defined(USB)
+//
+//void usbClock_Config(void)
+//{
+// RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+//
+// PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USB;
+// PeriphClkInitStruct.PLL3.PLL3M = 1;
+// PeriphClkInitStruct.PLL3.PLL3N = 24;
+// PeriphClkInitStruct.PLL3.PLL3P = 2;
+// PeriphClkInitStruct.PLL3.PLL3Q = 4;
+// PeriphClkInitStruct.PLL3.PLL3R = 2;
+// PeriphClkInitStruct.PLL3.PLL3RGE = RCC_PLL3VCIRANGE_3;
+// PeriphClkInitStruct.PLL3.PLL3FRACN = 0;
+// PeriphClkInitStruct.UsbClockSelection = RCC_USBCLKSOURCE_PLL3;
+//
+// if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK) {
+//  Error_Handler();
+// }
+//}
+//
+//void usbInit(void)
+//{
+// GPIO_InitTypeDef GPIO_InitStruct;
+//
+// GPIO_InitStruct.Pin = USB_DM_Pin | USB_DP_Pin;
+// GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+// GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+// GPIO_InitStruct.Pull = GPIO_NOPULL;
+// GPIO_InitStruct.Alternate = GPIO_AF10_OTG2_HS;
+// HAL_GPIO_Init(USB_DM_GPIO_Port, &GPIO_InitStruct);
+//}
+//
+//#endif  /* USB */
 
 /* USER CODE END 4 */
 

@@ -40,7 +40,7 @@ void MX_UART5_Init(void)
 
   /* USER CODE END UART5_Init 1 */
   huart5.Instance = UART5;
-  huart5.Init.BaudRate = 115200;
+  huart5.Init.BaudRate = 19200;
   huart5.Init.WordLength = UART_WORDLENGTH_8B;
   huart5.Init.StopBits = UART_STOPBITS_1;
   huart5.Init.Parity = UART_PARITY_NONE;
@@ -232,7 +232,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     PF6     ------> UART7_RX
     PF7     ------> UART7_TX
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+    GPIO_InitStruct.Pin = Uart7Rx_Pin|Uart7Tx_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -269,7 +269,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     PD8     ------> USART3_TX
     PD9     ------> USART3_RX
     */
-    GPIO_InitStruct.Pin = STLK_VCP_RX_Pin|STLK_VCP_TX_Pin;
+    GPIO_InitStruct.Pin = Usart3Tx_Pin|Usart3Rx_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -319,7 +319,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     PF6     ------> UART7_RX
     PF7     ------> UART7_TX
     */
-    HAL_GPIO_DeInit(GPIOF, GPIO_PIN_6|GPIO_PIN_7);
+    HAL_GPIO_DeInit(GPIOF, Uart7Rx_Pin|Uart7Tx_Pin);
 
     /* UART7 interrupt Deinit */
     HAL_NVIC_DisableIRQ(UART7_IRQn);
@@ -339,7 +339,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     PD8     ------> USART3_TX
     PD9     ------> USART3_RX
     */
-    HAL_GPIO_DeInit(GPIOD, STLK_VCP_RX_Pin|STLK_VCP_TX_Pin);
+    HAL_GPIO_DeInit(GPIOD, Usart3Tx_Pin|Usart3Rx_Pin);
 
   /* USER CODE BEGIN USART3_MspDeInit 1 */
 
