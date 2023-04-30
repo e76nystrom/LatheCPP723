@@ -113,20 +113,20 @@ set(SOURCES1
 	../LatheCPP/lathe_src/stm32Info.cpp
 	../LatheCPP/lathe_src/xcontrol.cpp
 	../LatheCPP/lathe_src/zcontrol.cpp
-	../LatheCPP7H/Src/cdcTask.cpp
 	)
 
 if (${USB})
 
 set(SOURCES2
-        ../USBx/project/usb_descriptors.c
-        ../USBx/project/trace.c
-        ../USBx/src/tusb.c
-        ../USBx/src/common/tusb_fifo.c
-        ../USBx/src/class/cdc/cdc_device.c
-        ../USBx/src/device/usbd.c
-        ../USBx/src/device/usbd_control.c
-        ../USBx/src/portable/synopsys/dwc2/dcd_dwc2.c
+    ../USBx/project/usb_descriptors.c
+    ../USBx/project/trace.c
+    ../USBx/src/tusb.c
+    ../USBx/src/common/tusb_fifo.c
+    ../USBx/src/class/cdc/cdc_device.c
+    ../USBx/src/device/usbd.c
+    ../USBx/src/device/usbd_control.c
+    ../USBx/src/portable/synopsys/dwc2/dcd_dwc2.c
+	../LatheCPP7H/Src/cdcTask.cpp
 )
 
 else ()
