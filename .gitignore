@@ -1,7 +1,9 @@
 cmake-build-debug/*
+cmake-build-debug-gnu-arm/*
 Debug/*
 License.txt
 *~
 *.bak
 
 
+/Debug/

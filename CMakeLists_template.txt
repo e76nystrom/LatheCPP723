@@ -67,8 +67,6 @@ include_directories(../LatheCPP/include)
 
 if (${USB})
 
-add_definitions(-DUSB)
-
 include_directories(
         ../USBx/hw
         ../USBx/hw/bsp/stm32h7
@@ -82,8 +80,16 @@ endif ()
 
 add_definitions(${defines})
 
-add_definitions(-DSTM32H7 -DSTM32H723xx -DNUCLEOH723 -DLATHE_CPP -DCLION)
-#add_definitions(-DTRACE)
+add_definitions(
+-DSTM32H7
+-DSTM32H723xx
+-DNUCLEOH723
+-DLATHE_CPP
+-DCLION
+-DTRACE
+-DLATHE_USB
+-DUSB
+)
 
 file(GLOB_RECURSE SOURCES
 	"Core/Startup/*.*"
@@ -126,7 +132,7 @@ set(SOURCES2
     ../USBx/src/device/usbd.c
     ../USBx/src/device/usbd_control.c
     ../USBx/src/portable/synopsys/dwc2/dcd_dwc2.c
-	../LatheCPP7H/Src/cdcTask.cpp
+	../LatheCPP/lathe_src/cdcTask.cpp
 )
 
 else ()

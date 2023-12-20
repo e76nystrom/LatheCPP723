@@ -26,8 +26,8 @@ set(CMAKE_C_STANDARD 11)
 #Uncomment for hardware floating point
 add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
 add_compile_definitions(CFG_TUSB_MCU=306)
-add_compile_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
-add_link_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
+add_compile_options(-mfloat-abi=hard -mfpu=fpv5-d16)
+add_link_options(-mfloat-abi=hard -mfpu=fpv5-d16)
 
 #Uncomment for software floating point
 #add_compile_options(-mfloat-abi=soft)
@@ -81,10 +81,20 @@ include_directories(
 
 endif ()
 
-add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx)
+add_definitions(
+		-DDEBUG
+		-DUSE_HAL_DRIVER
+		-DSTM32H723xx
+)
 
-add_definitions(-DSTM32H7 -DSTM32H723xx -DNUCLEOH723 -DLATHE_CPP -DCLION)
-#add_definitions(-DTRACE)
+add_definitions(
+		-DSTM32H7
+		-DSTM32H723xx
+		-DNUCLEOH723
+		-DLATHE_CPP
+		-DCLION
+		-DLATHE_USB
+)
 
 file(GLOB_RECURSE SOURCES
 	"Core/Startup/*.*"
@@ -127,7 +137,7 @@ set(SOURCES2
     ../USBx/src/device/usbd.c
     ../USBx/src/device/usbd_control.c
     ../USBx/src/portable/synopsys/dwc2/dcd_dwc2.c
-	../LatheCPP7H/Src/cdcTask.cpp
+	../LatheCPP/lathe_src/cdcTask.cpp
 )
 
 else ()

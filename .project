@@ -19,14 +19,46 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>com.st.stm32cube.ide.mcu.MCUProjectNature</nature>
 		<nature>org.eclipse.cdt.core.cnature</nature>
-		<nature>com.st.stm32cube.ide.mcu.MCUCubeIdeServicesRevAev2ProjectNature</nature>
-		<nature>com.st.stm32cube.ide.mcu.MCUCubeProjectNature</nature>
-		<nature>com.st.stm32cube.ide.mcu.MCUAdvancedStructureProjectNature</nature>
-		<nature>com.st.stm32cube.ide.mcu.MCUSingleCpuProjectNature</nature>
-		<nature>com.st.stm32cube.ide.mcu.MCURootProjectNature</nature>
+		<nature>org.eclipse.cdt.core.ccnature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Core</name>
+			<type>2</type>
+			<location>C:/Development/EclipseCPP/LatheCPP723/Core</location>
+		</link>
+		<link>
+			<name>Drivers</name>
+			<type>2</type>
+			<location>C:/Development/EclipseCPP/LatheCPP723/Drivers</location>
+		</link>
+		<link>
+			<name>Inc</name>
+			<type>2</type>
+			<location>C:/Development/EclipseCPP/LatheCPP723/Inc</location>
+		</link>
+		<link>
+			<name>USBProject</name>
+			<type>2</type>
+			<location>C:/Development/EclipseCPP/USBx/project</location>
+		</link>
+		<link>
+			<name>USBSrc</name>
+			<type>2</type>
+			<location>C:/Development/EclipseCPP/USBx/src</location>
+		</link>
+		<link>
+			<name>include</name>
+			<type>2</type>
+			<location>C:/Development/EclipseCPP/LatheCPP/include</location>
+		</link>
+		<link>
+			<name>lathe_src</name>
+			<type>2</type>
+			<location>C:/Development/EclipseCPP/LatheCPP/lathe_src</location>
+		</link>
+	</linkedResources>
 </projectDescription>
